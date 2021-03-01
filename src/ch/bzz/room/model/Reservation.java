@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class Reservation {
     private String name;
-    private String sirname;
+    private String surname;
     private String contact;
     private String phoneNr;
     private String mail;
@@ -45,22 +45,22 @@ public class Reservation {
     }
 
     /**
-     * Gets the sirname
+     * Gets the surname
      *
-     * @return value of sirname
+     * @return value of surname
      */
     public String getSirname() {
-        return sirname;
+        return surname;
     }
 
     /**
-     * Sets the sirname
+     * Sets the surname
      *
-     * @param sirname the value to set
+     * @param surname the value to set
      */
 
-    public void setSirname(String sirname) {
-        this.sirname = sirname;
+    public void setSirname(String surname) {
+        this.surname = surname;
     }
 
     /**

@@ -27,7 +27,15 @@ public class RoomDAO implements DAO<Room, String>{
     public List<Room> getAll() {
         ResultSet resultSet;
         List<Room> roomList = new ArrayList<>();
-        String sqlQuery = "SELECT roomID, flaeche, hasProjector, hasVideo, hasSound, hasLavabo, besonderheiten, kosten from Room;";
+        String sqlQuery = "SELECT `Room`.`roomId`,\n" +
+                "    `Room`.`grundflaeche`,\n" +
+                "    `Room`.`hasProjector`,\n" +
+                "    `Room`.`hasSound`,\n" +
+                "    `Room`.`hasLavabo`,\n" +
+                "    `Room`.`hasVideo`,\n" +
+                "    `Room`.`kosten`,\n" +
+                "    `Room`.`besonderheiten`\n" +
+                "FROM `RoomDB`.`Room`;";
         try {
             resultSet = MySqlDB.sqlSelect(sqlQuery);
             while (resultSet.next()) {
@@ -52,7 +60,15 @@ public class RoomDAO implements DAO<Room, String>{
     public Room getEntity(String id) {
         ResultSet resultSet;
         Room room = new Room();
-        String sqlQuery = "SELECT roomID, flaeche, hasProjector, hasVideo, hasSound, hasLavabo, besonderheiten, kosten from room" + " WHERE roomID=?";
+        String sqlQuery = "SELECT `Room`.`roomId`,\n" +
+                "    `Room`.`grundflaeche`,\n" +
+                "    `Room`.`hasProjector`,\n" +
+                "    `Room`.`hasSound`,\n" +
+                "    `Room`.`hasLavabo`,\n" +
+                "    `Room`.`hasVideo`,\n" +
+                "    `Room`.`kosten`,\n" +
+                "    `Room`.`besonderheiten`\n" +
+                "FROM `RoomDB`.`Room`;" + " WHERE roomId=?";
         try {
             HashMap<Integer, String> map = new HashMap<>();
             map.put(1, id);
@@ -70,7 +86,8 @@ public class RoomDAO implements DAO<Room, String>{
     }
 
     private void setValues(ResultSet resultSet, Room room) throws SQLException {
-        room.setGrundflaeche(resultSet.getInt("flaeche"));
+        room.setRoomId(resultSet.getInt("roomId"));
+        room.setGrundflaeche(resultSet.getInt("grundflaeche"));
         room.setHasProjector(resultSet.getBoolean("hasProjector"));
         room.setHasVideo(resultSet.getBoolean("hasVideo"));
         room.setHasSound(resultSet.getBoolean("hasSound"));
