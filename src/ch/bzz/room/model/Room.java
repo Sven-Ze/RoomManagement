@@ -16,6 +16,7 @@ public class Room {
     private boolean hasVideo;
     private boolean hasSound;
     private boolean hasLavabo;
+    private double kosten;
     private String besonderheiten;
 
     /**
@@ -130,6 +131,25 @@ public class Room {
 
     public void setHasLavabo(boolean hasLavabo) {
         this.hasLavabo = hasLavabo;
+    }
+
+    /**
+     * Gets the kosten
+     *
+     * @return value of kosten
+     */
+    public double getKosten() {
+        return kosten;
+    }
+
+    /**
+     * Sets the kosten
+     *
+     * @param kosten the value to set
+     */
+
+    public void setKosten(double kosten) {
+        this.kosten = kosten;
     }
 
     /**
