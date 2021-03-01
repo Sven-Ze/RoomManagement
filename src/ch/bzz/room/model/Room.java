@@ -16,6 +16,7 @@ public class Room {
     private boolean hasVideo;
     private boolean hasSound;
     private boolean hasLavabo;
+    private String besonderheiten;
 
     /**
      * Gets the roomId
@@ -129,5 +130,24 @@ public class Room {
 
     public void setHasLavabo(boolean hasLavabo) {
         this.hasLavabo = hasLavabo;
+    }
+
+    /**
+     * Gets the besonderheiten
+     *
+     * @return value of besonderheiten
+     */
+    public String getBesonderheiten() {
+        return besonderheiten;
+    }
+
+    /**
+     * Sets the besonderheiten
+     *
+     * @param besonderheiten the value to set
+     */
+
+    public void setBesonderheiten(String besonderheiten) {
+        this.besonderheiten = besonderheiten;
     }
 }
