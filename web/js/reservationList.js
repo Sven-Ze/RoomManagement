@@ -44,6 +44,7 @@ function showReservation(reservationData) {
         tableData += "<td>" + reservation.willBeCleaned + "</td>";
         tableData += "<td>" + reservation.wish + "</td>";
         tableData += "<td>" + reservation.note + "</td>";
+        tableData += "<td>" + reservation.room.roomType + "</td>";
         tableData += "</tr>";
     });
     $("#reservationList > tbody").html(tableData);
