@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +32,36 @@ public class RoomService {
         int httpStatus = 200;
 
         DAO<Room, String> projectDao = new RoomDAO();
-        List<Room> roomList = projectDao.getAll();
+        //List<Room> roomList = projectDao.getAll();
+        List<Room> roomList = new ArrayList<>();
 
+        Room room1 = new Room();
+
+        room1.setRoomId(1);
+        room1.setRoomType("Turnhalle");
+        room1.setBesonderheiten("3 Turnhallen nebeneinander, die auch als 3fach Turnhalle genutzt werden können");
+        room1.setGrundflaeche(500);
+        room1.setKosten(450);
+
+        Room room2 = new Room();
+
+        room2.setRoomId(2);
+        room2.setRoomType("Küche ");
+        room2.setBesonderheiten("Industrieküche für ca. 200 Personen, Kochplatte, Kipper, Steamer, Backofen, Kühlschränke, kein Geschirr");
+        room2.setGrundflaeche(100);
+        room2.setKosten(300);
+
+        Room room3 = new Room();
+
+        room3.setRoomId(3);
+        room3.setRoomType("Sitzungs");
+        room3.setBesonderheiten("Projektor, Verstärker, Whiteboard, Lavabo  ");
+        room3.setGrundflaeche(50);
+        room3.setKosten(75);
+
+        roomList.add(room1);
+        roomList.add(room2);
+        roomList.add(room3);
         if (roomList.isEmpty()) {
             return Response
                     .status(404)

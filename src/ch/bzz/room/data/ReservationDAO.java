@@ -86,7 +86,7 @@ public class ReservationDAO implements DAO<Reservation, String>{
 
     private void setValues(ResultSet resultSet, Reservation reservation) throws SQLException {
         reservation.setName(resultSet.getString("name"));
-        reservation.setSirname(resultSet.getString("surname"));
+        reservation.setSurname(resultSet.getString("surname"));
         reservation.setContact(resultSet.getString("contact"));
         reservation.setPhoneNr(resultSet.getString("phoneNr"));
         reservation.setMail(resultSet.getString("mail"));
