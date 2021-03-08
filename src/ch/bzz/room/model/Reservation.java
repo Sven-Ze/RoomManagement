@@ -3,7 +3,7 @@ package ch.bzz.room.model;
 import java.time.LocalDate;
 
 /**
- * short description
+ * Reservation Data Class
  * <p>
  * RoomManagement
  *
@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @since 01.03.21
  */
 public class Reservation {
+    private int reservationId;
     private String name;
     private String surname;
     private String contact;
@@ -24,6 +25,26 @@ public class Reservation {
     private boolean willBeCleaned;
     private String wish;
     private String note;
+    private Room room;
+
+    /**
+     * Gets the id
+     *
+     * @return value of id
+     */
+    public int getId() {
+        return reservationId;
+    }
+
+    /**
+     * Sets the id
+     *
+     * @param id the value to set
+     */
+
+    public void setId(int id) {
+        this.reservationId = id;
+    }
 
     /**
      * Gets the name
@@ -49,7 +70,7 @@ public class Reservation {
      *
      * @return value of surname
      */
-    public String getSirname() {
+    public String getSurname() {
         return surname;
     }
 
@@ -59,7 +80,7 @@ public class Reservation {
      * @param surname the value to set
      */
 
-    public void setSirname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
@@ -251,5 +272,24 @@ public class Reservation {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * Gets the room
+     *
+     * @return value of room
+     */
+    public Room getRoom() {
+        return room;
+    }
+
+    /**
+     * Sets the room
+     *
+     * @param room the value to set
+     */
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

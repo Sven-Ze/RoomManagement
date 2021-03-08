@@ -1,7 +1,7 @@
 package ch.bzz.room.model;
 
 /**
- * short description
+ * Room Data Class
  * <p>
  * 426_RoomManagement
  *
@@ -11,6 +11,7 @@ package ch.bzz.room.model;
  */
 public class Room {
     private int roomId;
+    private String roomType;
     private int grundflaeche;
     private boolean hasProjector;
     private boolean hasVideo;
@@ -39,10 +40,31 @@ public class Room {
     }
 
     /**
+     * Gets the roomType
+     *
+     * @return value of roomType
+     */
+    public String getRoomType() {
+        return roomType;
+    }
+
+    /**
+     * Sets the roomType
+     *
+     * @param roomType the value to set
+     */
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    /**
      * Gets the grundflaeche
      *
      * @return value of grundflaeche
      */
+
+
     public int getGrundflaeche() {
         return grundflaeche;
     }
