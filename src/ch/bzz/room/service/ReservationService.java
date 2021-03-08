@@ -40,6 +40,18 @@ public class ReservationService {
         //List<Reservation> reservationList = projectDao.getAll();
         List<Reservation> reservationList = new ArrayList<>();
 
+        Room room = new Room();
+        room.setRoomId(1);
+        room.setRoomType("Turnhalle");
+
+        Room room1 = new Room();
+        room1.setRoomId(2);
+        room1.setRoomType("Küche");
+
+        Room room2 = new Room();
+        room2.setRoomId(3);
+        room2.setRoomType("Sitzungszimmer");
+
         Reservation reservation1 = new Reservation();
         reservation1.setName("Zeindler");
         reservation1.setSurname("Sven");
@@ -52,7 +64,7 @@ public class ReservationService {
         reservation1.setWillBeCleaned(true);
         reservation1.setWish("Kein Wunsch");
         reservation1.setNote("Der Schlüssel wird unter dem Teppich deponiert");
-
+        reservation1.setRoom(room);
 
         Reservation reservation2 = new Reservation();
         reservation2.setName("Muslija");
@@ -66,6 +78,8 @@ public class ReservationService {
         reservation2.setWillBeCleaned(true);
         reservation2.setWish("Kein Wunsch");
         reservation2.setNote("Nichts");
+        reservation2.setRoom(room1);
+
 
         Reservation reservation3 = new Reservation();
         reservation3.setName("Klincov");
@@ -79,6 +93,7 @@ public class ReservationService {
         reservation3.setWillBeCleaned(true);
         reservation3.setWish("Kein Wunsch");
         reservation3.setNote("Nichts");
+        reservation3.setRoom(room2);
 
         reservationList.add(reservation1);
         reservationList.add(reservation2);
