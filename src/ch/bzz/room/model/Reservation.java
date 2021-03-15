@@ -16,16 +16,16 @@ import java.util.List;
  */
 public class Reservation {
     private int reservationId;
-    private List<Mieter> mieterList;
-    private List<Room> roomList;
+    private Mieter mieter;
+    private Room room;
     private LocalDate von;
     private LocalDate bis;
     private String zusatzStruktur;
     private boolean reinigtMieter;
 
-    public Reservation( List<Mieter> mieterList, List<Room> roomList, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter) {
-        this.mieterList = mieterList;
-        this.roomList = roomList;
+    public Reservation(Mieter mieter, Room room, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter) {
+        this.mieter = mieter;
+        this.room = room;
         this.von = von;
         this.bis = bis;
         this.zusatzStruktur = zusatzStruktur;
@@ -34,6 +34,45 @@ public class Reservation {
 
     public Reservation() {
 
+    }
+
+
+    /**
+     * Gets the mieter
+     *
+     * @return value of mieter
+     */
+    public Mieter getMieter() {
+        return mieter;
+    }
+
+    /**
+     * Sets the mieter
+     *
+     * @param mieter the value to set
+     */
+
+    public void setMieter(Mieter mieter) {
+        this.mieter = mieter;
+    }
+
+    /**
+     * Gets the room
+     *
+     * @return value of room
+     */
+    public Room getRoom() {
+        return room;
+    }
+
+    /**
+     * Sets the room
+     *
+     * @param room the value to set
+     */
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     /**
@@ -53,44 +92,6 @@ public class Reservation {
 
     public void setReservationId(int reservationId) {
         this.reservationId = reservationId;
-    }
-
-    /**
-     * Gets the mieterList
-     *
-     * @return value of mieterList
-     */
-    public List<Mieter> getMieterList() {
-        return mieterList;
-    }
-
-    /**
-     * Sets the mieterList
-     *
-     * @param mieterList the value to set
-     */
-
-    public void setMieterList(List<Mieter> mieterList) {
-        this.mieterList = mieterList;
-    }
-
-    /**
-     * Gets the roomList
-     *
-     * @return value of roomList
-     */
-    public List<Room> getRoomList() {
-        return roomList;
-    }
-
-    /**
-     * Sets the roomList
-     *
-     * @param roomList the value to set
-     */
-
-    public void setRoomList(List<Room> roomList) {
-        this.roomList = roomList;
     }
 
     /**
