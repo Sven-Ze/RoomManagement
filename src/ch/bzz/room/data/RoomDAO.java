@@ -28,13 +28,7 @@ public class RoomDAO implements DAO<Room, String>{
         ResultSet resultSet;
         List<Room> roomList = new ArrayList<>();
         String sqlQuery = "SELECT `Room`.`roomId`,\n" +
-                "    `Room`.`grundflaeche`,\n" +
-                "    `Room`.`hasProjector`,\n" +
-                "    `Room`.`hasSound`,\n" +
-                "    `Room`.`hasLavabo`,\n" +
-                "    `Room`.`hasVideo`,\n" +
-                "    `Room`.`kosten`,\n" +
-                "    `Room`.`besonderheiten`\n" +
+                "    `Room`.`raumName`\n" +
                 "FROM `RoomDB`.`Room`;";
         try {
             resultSet = MySqlDB.sqlSelect(sqlQuery);
@@ -61,14 +55,8 @@ public class RoomDAO implements DAO<Room, String>{
         ResultSet resultSet;
         Room room = new Room();
         String sqlQuery = "SELECT `Room`.`roomId`,\n" +
-                "    `Room`.`grundflaeche`,\n" +
-                "    `Room`.`hasProjector`,\n" +
-                "    `Room`.`hasSound`,\n" +
-                "    `Room`.`hasLavabo`,\n" +
-                "    `Room`.`hasVideo`,\n" +
-                "    `Room`.`kosten`,\n" +
-                "    `Room`.`besonderheiten`\n" +
-                "FROM `RoomDB`.`Room`;" + " WHERE roomId=?";
+                "    `Room`.`raumName`\n" +
+                "FROM `RoomDB`.`Room`" + " WHERE roomId=?";
         try {
             HashMap<Integer, String> map = new HashMap<>();
             map.put(1, id);
@@ -87,12 +75,6 @@ public class RoomDAO implements DAO<Room, String>{
 
     private void setValues(ResultSet resultSet, Room room) throws SQLException {
         room.setRoomId(resultSet.getInt("roomId"));
-        room.setGrundflaeche(resultSet.getInt("grundflaeche"));
-        room.setHasProjector(resultSet.getBoolean("hasProjector"));
-        room.setHasVideo(resultSet.getBoolean("hasVideo"));
-        room.setHasSound(resultSet.getBoolean("hasSound"));
-        room.setHasLavabo(resultSet.getBoolean("hasLavabo"));
-        room.setBesonderheiten(resultSet.getString("besonderheiten"));
-        room.setKosten(resultSet.getDouble("kosten"));
+        room.setRaumName(resultSet.getString("raumName"));
     }
 }
