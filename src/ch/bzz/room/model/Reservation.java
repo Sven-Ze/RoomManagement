@@ -1,6 +1,9 @@
 package ch.bzz.room.model;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
+
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Reservation Data Class
@@ -13,283 +16,156 @@ import java.time.LocalDate;
  */
 public class Reservation {
     private int reservationId;
-    private String name;
-    private String surname;
-    private String contact;
-    private String phoneNr;
-    private String mail;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate giveKey;
-    private LocalDate receiveKey;
-    private boolean willBeCleaned;
-    private String wish;
-    private String note;
-    private Room room;
+    private List<Mieter> mieterList;
+    private List<Room> roomList;
+    private LocalDate von;
+    private LocalDate bis;
+    private String zusatzStruktur;
+    private boolean reinigtMieter;
+
+    public Reservation( List<Mieter> mieterList, List<Room> roomList, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter) {
+        this.mieterList = mieterList;
+        this.roomList = roomList;
+        this.von = von;
+        this.bis = bis;
+        this.zusatzStruktur = zusatzStruktur;
+        this.reinigtMieter = reinigtMieter;
+    }
+
+    public Reservation() {
+
+    }
 
     /**
-     * Gets the id
+     * Gets the reservationId
      *
-     * @return value of id
+     * @return value of reservationId
      */
-    public int getId() {
+    public int getReservationId() {
         return reservationId;
     }
 
     /**
-     * Sets the id
+     * Sets the reservationId
      *
-     * @param id the value to set
+     * @param reservationId the value to set
      */
 
-    public void setId(int id) {
-        this.reservationId = id;
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
     /**
-     * Gets the name
+     * Gets the mieterList
      *
-     * @return value of name
+     * @return value of mieterList
      */
-    public String getName() {
-        return name;
+    public List<Mieter> getMieterList() {
+        return mieterList;
     }
 
     /**
-     * Sets the name
+     * Sets the mieterList
      *
-     * @param name the value to set
+     * @param mieterList the value to set
      */
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMieterList(List<Mieter> mieterList) {
+        this.mieterList = mieterList;
     }
 
     /**
-     * Gets the surname
+     * Gets the roomList
      *
-     * @return value of surname
+     * @return value of roomList
      */
-    public String getSurname() {
-        return surname;
+    public List<Room> getRoomList() {
+        return roomList;
     }
 
     /**
-     * Sets the surname
+     * Sets the roomList
      *
-     * @param surname the value to set
+     * @param roomList the value to set
      */
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
     }
 
     /**
-     * Gets the contact
+     * Gets the von
      *
-     * @return value of contact
+     * @return value of von
      */
-    public String getContact() {
-        return contact;
+    public LocalDate getVon() {
+        return von;
     }
 
     /**
-     * Sets the contact
+     * Sets the von
      *
-     * @param contact the value to set
+     * @param von the value to set
      */
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setVon(LocalDate von) {
+        this.von = von;
     }
 
     /**
-     * Gets the phoneNr
+     * Gets the bis
      *
-     * @return value of phoneNr
+     * @return value of bis
      */
-    public String getPhoneNr() {
-        return phoneNr;
+    public LocalDate getBis() {
+        return bis;
     }
 
     /**
-     * Sets the phoneNr
+     * Sets the bis
      *
-     * @param phoneNr the value to set
+     * @param bis the value to set
      */
 
-    public void setPhoneNr(String phoneNr) {
-        this.phoneNr = phoneNr;
+    public void setBis(LocalDate bis) {
+        this.bis = bis;
     }
 
     /**
-     * Gets the mail
+     * Gets the zusatzStruktur
      *
-     * @return value of mail
+     * @return value of zusatzStruktur
      */
-    public String getMail() {
-        return mail;
+    public String getZusatzStruktur() {
+        return zusatzStruktur;
     }
 
     /**
-     * Sets the mail
+     * Sets the zusatzStruktur
      *
-     * @param mail the value to set
+     * @param zusatzStruktur the value to set
      */
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setZusatzStruktur(String zusatzStruktur) {
+        this.zusatzStruktur = zusatzStruktur;
     }
 
     /**
-     * Gets the startDate
+     * Gets the reinigtMieter
      *
-     * @return value of startDate
+     * @return value of reinigtMieter
      */
-    public LocalDate getStartDate() {
-        return startDate;
+    public boolean isReinigtMieter() {
+        return reinigtMieter;
     }
 
     /**
-     * Sets the startDate
+     * Sets the reinigtMieter
      *
-     * @param startDate the value to set
+     * @param reinigtMieter the value to set
      */
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * Gets the endDate
-     *
-     * @return value of endDate
-     */
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    /**
-     * Sets the endDate
-     *
-     * @param endDate the value to set
-     */
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    /**
-     * Gets the giveKey
-     *
-     * @return value of giveKey
-     */
-    public LocalDate getGiveKey() {
-        return giveKey;
-    }
-
-    /**
-     * Sets the giveKey
-     *
-     * @param giveKey the value to set
-     */
-
-    public void setGiveKey(LocalDate giveKey) {
-        this.giveKey = giveKey;
-    }
-
-    /**
-     * Gets the receiveKey
-     *
-     * @return value of receiveKey
-     */
-    public LocalDate getReceiveKey() {
-        return receiveKey;
-    }
-
-    /**
-     * Sets the receiveKey
-     *
-     * @param receiveKey the value to set
-     */
-
-    public void setReceiveKey(LocalDate receiveKey) {
-        this.receiveKey = receiveKey;
-    }
-
-    /**
-     * Gets the willBeCleaned
-     *
-     * @return value of willBeCleaned
-     */
-    public boolean isWillBeCleaned() {
-        return willBeCleaned;
-    }
-
-    /**
-     * Sets the willBeCleaned
-     *
-     * @param willBeCleaned the value to set
-     */
-
-    public void setWillBeCleaned(boolean willBeCleaned) {
-        this.willBeCleaned = willBeCleaned;
-    }
-
-    /**
-     * Gets the wish
-     *
-     * @return value of wish
-     */
-    public String getWish() {
-        return wish;
-    }
-
-    /**
-     * Sets the wish
-     *
-     * @param wish the value to set
-     */
-
-    public void setWish(String wish) {
-        this.wish = wish;
-    }
-
-    /**
-     * Gets the note
-     *
-     * @return value of note
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * Sets the note
-     *
-     * @param note the value to set
-     */
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    /**
-     * Gets the room
-     *
-     * @return value of room
-     */
-    public Room getRoom() {
-        return room;
-    }
-
-    /**
-     * Sets the room
-     *
-     * @param room the value to set
-     */
-
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setReinigtMieter(boolean reinigtMieter) {
+        this.reinigtMieter = reinigtMieter;
     }
 }
