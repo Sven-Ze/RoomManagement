@@ -30,8 +30,8 @@ public class Config extends Application {
     public Set<Class<?>> getClasses() {
         HashSet providers = new HashSet<Class<?>>();
         providers.add(RoomService.class);
-        providers.add(ReservationService
-                .class);
+        providers.add(ReservationService.class);
+        providers.add(UserService.class);
         return providers;
     }
 
