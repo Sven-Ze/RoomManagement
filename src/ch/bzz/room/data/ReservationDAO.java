@@ -22,7 +22,7 @@ public class ReservationDAO implements DAO<Reservation, String>{
 
     /**
      * reads all reservations in the table "reservation"
-     * @return list of rreservation oom
+     * @return list of reservation room
      */
     @Override
     public List<Reservation> getAll() {
@@ -91,7 +91,7 @@ public class ReservationDAO implements DAO<Reservation, String>{
         reservation.setBis(resultSet.getDate("bis").toLocalDate());
         reservation.setZusatzStruktur(resultSet.getString("zusatzinfrastruktur"));
         reservation.setReinigtMieter(resultSet.getBoolean("vomMieterReinigung"));
-        //reservation.setMieter(new MieterDAO().getEntity(resultSet.getString("Mieter_mieterId")));
+        reservation.setMieter(new MieterDAO().getEntity(resultSet.getString("Mieter_mieterId")));
         reservation.setRoom(new RoomDAO().getEntity(resultSet.getString("Room_roomId")));
 
 
