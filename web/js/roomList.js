@@ -8,7 +8,7 @@
 
 
 $(document).ready(function () {
-    loadRooms();
+    //loadRooms();
 });
 
 function loadRooms() {

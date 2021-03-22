@@ -1,5 +1,6 @@
 package ch.bzz.room.service;
 
+import ch.bzz.room.model.Mieter;
 import ch.bzz.room.model.Reservation;
 
 import javax.ws.rs.ApplicationPath;
@@ -32,6 +33,7 @@ public class Config extends Application {
         providers.add(RoomService.class);
         providers.add(ReservationService.class);
         providers.add(UserService.class);
+        providers.add(MieterService.class);
         return providers;
     }
 
