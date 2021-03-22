@@ -1,8 +1,8 @@
 #logoff {
-    background: #FF0000;
-    border: #FF0000;
+    background: white;
+    border: white;
     border-radius:5px;
-    color: white;
+    color: black;
     right: 5px;
     top: 20px;
     position: fixed;

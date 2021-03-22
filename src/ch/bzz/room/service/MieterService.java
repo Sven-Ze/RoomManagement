@@ -1,48 +1,48 @@
 package ch.bzz.room.service;
 
 import ch.bzz.room.data.DAO;
-import ch.bzz.room.data.RoomDAO;
-import ch.bzz.room.model.Room;
+import ch.bzz.room.data.MieterDAO;
+import ch.bzz.room.data.ReservationDAO;
+import ch.bzz.room.model.Mieter;
+import ch.bzz.room.model.Reservation;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * short description
  * <p>
- * RoomManagement
+ * 426_RoomManagement
  *
  * @author TODO
  * @version 1.0
- * @since 01.03.21
+ * @since 22.03.21
  */
-
-@Path("room")
-public class RoomService {
+@Path("mieter")
+public class MieterService {
 
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listRooms() {
+    public Response listMieter() {
         int httpStatus = 200;
 
-        DAO<Room, String> projectDao = new RoomDAO();
-        List<Room> roomList = projectDao.getAll();
+        DAO<Mieter, String> mieterDao = new MieterDAO();
+        List<Mieter> mieterList = mieterDao.getAll();
 
-        if (roomList.isEmpty()) {
+        if (mieterList.isEmpty()) {
             return Response
                     .status(404)
-                    .entity("{\"error\":\"Keine Projekte gefunden\"}")
+                    .entity("{\"error\":\"Keine Mieter gefunden\"}")
                     .build();
         } else {
             return Response
                     .status(httpStatus)
-                    .entity(roomList)
+                    .entity(mieterList)
                     .build();
         }
     }
