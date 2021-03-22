@@ -7,9 +7,8 @@ import ch.bzz.room.model.Reservation;
 import ch.bzz.room.model.Room;
 
 import javax.ejb.Local;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.validation.constraints.NotEmpty;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.Duration;
@@ -66,6 +65,34 @@ public class ReservationService {
                     .entity(filteredList)
                     .build();
         }
+    }
+
+    @GET
+    @Path("read")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readReservation(
+            @QueryParam("reservationId")
+            @NotEmpty String id,
+            @CookieParam("userRole") String userRole
+
+    ){
+        Reservation reservation = null;
+        int httpStatus;
+        if (userRole == null || userRole.equals("gast")){
+            httpStatus = 403;
+        } else {
+            reservation = new ReservationDAO().getEntity(id);
+            if (reservation != null) {
+                httpStatus = 200;
+            } else {
+                httpStatus = 404;
+            }
+        }
+        Response response = Response
+                .status(httpStatus)
+                .entity(reservation)
+                .build();
+        return response;
     }
 
     public static long getDaysBetween(LocalDate startDate) {

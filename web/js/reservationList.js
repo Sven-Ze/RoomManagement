@@ -32,11 +32,11 @@ function showReservation(reservationData) {
     $("#reservationList > tbody").html("");
     var tableData = "";
     $.each(reservationData, function (id, reservation) {
+        var reinigung = reservation.reinigtMieter ? "Mieter" : "Verwaltung";
         tableData += "<tr>";
         tableData += "<td>" + reservation.room.raumName + "</td>";
         tableData += "<td>" + reservation.von + " - " +reservation.bis + "</td>";
-        tableData += "<td>" + reservation.zusatzStruktur + "</td>";
-        tableData += "<td>" + reservation.reinigtMieter + "</td>";
+        tableData += "<td>" + reinigung + "</td>";
         tableData += "<td>" + reservation.mieter.mieterVorname + " " + reservation.mieter.mieterNachname + "</td>";
         tableData += "<td>" + reservation.mieter.telefon + "</td>";
         if (Cookies.get("userRole") == "verwaltung") {
