@@ -33,18 +33,27 @@ function showReservation(reservationData) {
     var tableData = "";
     $.each(reservationData, function (id, reservation) {
         tableData += "<tr>";
-        tableData += "<td>" + reservation.name + "</td>";
-        tableData += "<td>" + reservation.surname + "</td>";
-        tableData += "<td>" + reservation.contact +"</td>";
-        tableData += "<td>" + reservation.phoneNr + "</td>";
-        tableData += "<td>" + reservation.mail + "</td>";
-        tableData += "<td>" + reservation.startDate + "</td>";
-        tableData += "<td>" + reservation.endDate + "</td>";
-        tableData += "<td>" + reservation.receiveKey + "</td>";
-        tableData += "<td>" + reservation.willBeCleaned + "</td>";
-        tableData += "<td>" + reservation.wish + "</td>";
-        tableData += "<td>" + reservation.note + "</td>";
-        tableData += "<td>" + reservation.room.roomType + "</td>";
+        tableData += "<td>" + reservation.room.raumName + "</td>";
+        tableData += "<td>" + reservation.von + " - " +reservation.bis + "</td>";
+        tableData += "<td>" + reservation.zusatzStruktur + "</td>";
+        tableData += "<td>" + reservation.reinigtMieter + "</td>";
+        tableData += "<td>" + reservation.mieter.mieterVorname + " " + reservation.mieter.mieterNachname + "</td>";
+        tableData += "<td>" + reservation.mieter.telefon + "</td>";
+        if (Cookies.get("userRole") == "verwaltung") {
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
+            tableData += "<td><a>Bearbeiten</a></td>";
+            tableData += "<td><button type='button'>Löschen</button></td>";
+        }
+        else if(Cookies.get("userRole") == "hauswart"){
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+        }
+        else {
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+        }
         tableData += "</tr>";
     });
     $("#reservationList > tbody").html(tableData);

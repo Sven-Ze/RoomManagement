@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Bean Validation" type="BeanValidation">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/bean-validator-5.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,5 +1,6 @@
 package ch.bzz.room.service;
 
+import ch.bzz.room.model.Mieter;
 import ch.bzz.room.model.Reservation;
 
 import javax.ws.rs.ApplicationPath;
@@ -30,8 +31,9 @@ public class Config extends Application {
     public Set<Class<?>> getClasses() {
         HashSet providers = new HashSet<Class<?>>();
         providers.add(RoomService.class);
-        providers.add(ReservationService
-                .class);
+        providers.add(ReservationService.class);
+        providers.add(UserService.class);
+        providers.add(MieterService.class);
         return providers;
     }
 
