@@ -71,7 +71,7 @@ public class ReservationService {
     public static long getDaysBetween(LocalDate startDate) {
         LocalDate now = LocalDate.now();
 
-        long numOfDaysBetween = Duration.between(now, startDate).toDays();
+        long numOfDaysBetween = Duration.between(now.atStartOfDay(), startDate.atStartOfDay()).toDays();
         return numOfDaysBetween;
     }
 }
