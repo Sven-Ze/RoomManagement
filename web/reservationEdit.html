@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/reservationEdit.css"/>
     <link rel="stylesheet" href="css/loginStyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./FIXME.js"></script>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -73,8 +72,13 @@
         <td><textarea id='zusatzStruktur' name='zusatzStruktur' required></textarea></td>
         </tr>
         <tr>
-            <td>Reinigung von Mieter</td>
-            <td><input id='reinigtMieter' name='reinigtMieter' value="reinigtMieter" type="checkbox" required/></td>
+            <td>Reinigung von </td>
+            <td>
+            <select id='reinigtMieter' name='reinigtMieter' required>
+                <option value=1> Mieter </option>
+                <option value=0>Verwaltung</option>
+            </select>
+            </td>
         </tr>
     </table>
     <table>
