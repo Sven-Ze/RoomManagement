@@ -46,7 +46,7 @@ public class UserDAO implements DAO<User, String> {
     /**
      * reads a benutzer from the table "benutzer" identified by the benutzerId
      *
-     * @param email the primary key
+     * @param username the primary key
      * @return benutzer object
      */
     public User getEntity(String username, String password) {

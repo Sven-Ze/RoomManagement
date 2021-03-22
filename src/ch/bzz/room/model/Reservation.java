@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @since 01.03.21
  */
-public class Reservation {
+public class Reservation implements Comparable<Reservation> {
     private int reservationId;
     private Mieter mieter;
     private Room room;
@@ -168,5 +168,12 @@ public class Reservation {
 
     public void setReinigtMieter(boolean reinigtMieter) {
         this.reinigtMieter = reinigtMieter;
+    }
+
+    @Override
+    public int compareTo(Reservation reservation) {
+        if (getVon() == null || reservation.getVon() == null)
+            return 0;
+        return getVon().compareTo(reservation.getVon());
     }
 }
