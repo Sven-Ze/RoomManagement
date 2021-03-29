@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="TODO"/>
+    <meta name="copyright" content="TODO"/>
+    <meta name="project" content="TODO"/>
+    <meta name="description" content="TODO"/>
+    <title>Reservationsliste</title>
+    <link rel="stylesheet" href="css/navStyle.css"/>
+    <link rel="stylesheet" href="css/reservationList.css"/>
+    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+    <h2>Room Management</h2>
+
+    <div class="dropdown">
+        <button class="dropbtn" >Räume
+        </button>
+        <div class="dropdown-content">
+            <a href="roomList.html">Räume ansehen</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn" >Reservationsliste
+        </button>
+        <div class="dropdown-content">
+            <a href="#">Reservationsliste ansehen</a>
+            <a href="reservationEdit.html">Reservation Bearbeiten</a>
+        </div>
+    </div>
+    <button type='button' id='logoff'>Anmelden</button>
+
+</div>
+
+<h3>Reservationen ansehen</h3>
+<div>
+    <span id="nachricht" style="color: red;"></span>
+</div>
+
+<table id="reservationList">
+    <thead>
+    <tr>
+        <th>Raumname</th>
+        <th>Reserviert von - bis</th>
+        <th>Reinigung</th>
+        <th>Kontakt Angaben</th>
+        <th>Kontakt Tel</th>
+        <th>Ansehen</th>
+        <th>Bearbeiten</th>
+        <th>Löschen</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script src='./js/jquery-3.4.1.min.js'></script>
+<script src='./js/reservationList.js'></script>
+<script src="./js/js.cookie.js"></script>
+<script src='./js/login.js'></script>
+
+</body>
+</html>

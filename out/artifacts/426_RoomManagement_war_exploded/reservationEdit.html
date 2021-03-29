@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="TODO"/>
+    <meta name="copyright" content="TODO"/>
+    <meta name="project" content="TODO"/>
+    <meta name="description" content="TODO"/>
+    <title>Reservation bearbeiten</title>
+    <link rel="stylesheet" href="css/navStyle.css"/>
+    <link rel="stylesheet" href="css/reservationEdit.css"/>
+    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+    <h2>Room Management</h2>
+
+    <div class="dropdown">
+        <button class="dropbtn" >Räume
+        </button>
+        <div class="dropdown-content">
+            <a href="roomList.html">Räume ansehen</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn" >Reservationsliste
+        </button>
+        <div class="dropdown-content">
+            <a href="reservationList.html">Reservationsliste ansehen</a>
+            <a href="#">Reservation Bearbeiten</a>
+        </div>
+    </div>
+    <button type='button' id='logoff'>Anmelden</button>
+
+</div>
+
+<h3>Reservationen Bearbeiten</h3>
+<div>
+    <span id="nachricht" style="color: red;"></span>
+</div>
+
+<form id='reservationEditForm' name='reservationEdit'>
+    <div id='message' style='color: red;'></div>
+    <table>
+        <input id='reservationId' name='reservationId' type='number' hidden />
+
+        <tr>
+            <td>Mieter</td>
+            <td>
+                <select id='mieter' name='mieter' required>
+                </select>
+            </td>
+        <tr>
+            <td>Raum</td>
+            <td>
+                <select id='room' name='room' required>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>von</td>
+            <td><input id='von' name='von' type='date' required/></td>
+        </tr>
+        <tr>
+            <td>bis</td>
+            <td><input id='bis' name='bis' type='date' required/></td>
+        </tr>
+        <tr>
+        <td>Zusätzlich Infos</td>
+        <td><textarea id='zusatzStruktur' name='zusatzStruktur' required></textarea></td>
+        </tr>
+        <tr>
+            <td>Reinigung von </td>
+            <td>
+            <select id='reinigtMieter' name='reinigtMieter' required>
+                <option value=1> Mieter </option>
+                <option value=0>Verwaltung</option>
+            </select>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <!-- <td>
+                <button id='save' type='submit'>Speichern</button>
+            </td>
+            <td>
+                <button id='reset' type='reset'>Zurücksetzen</button>
+            </td>-->
+            <td>
+                <button id='cancel' type='button'>Abbruch</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<script src='./js/jquery-3.4.1.min.js'></script>
+<script src='./js/reservationEdit.js'></script>
+<script src='./js/util.js'></script>
+<script src='./js/login.js'></script>
+<script src='./js/js.cookie.js'></script>
+</body>
+</html>

@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class ReservationService {
 
         for(Reservation r : reservationList) {
             long daysBetween = getDaysBetween(r.getVon());
-            if(daysBetween <= ONEWEEK) {
+            if(daysBetween <= ONEWEEK && r.getVon().isAfter(LocalDate.now())) {
                 filteredList.add(r);
             }
         }
@@ -96,9 +97,9 @@ public class ReservationService {
     }
 
     public static long getDaysBetween(LocalDate startDate) {
-        LocalDate now = LocalDate.now();
+        LocalDateTime now = LocalDate.now().atStartOfDay();
 
-        long numOfDaysBetween = Duration.between(now.atStartOfDay(), startDate.atStartOfDay()).toDays();
+        long numOfDaysBetween = Duration.between(now, startDate.atStartOfDay()).toDays();
         return numOfDaysBetween;
     }
 }
