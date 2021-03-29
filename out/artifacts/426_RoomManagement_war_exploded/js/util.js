@@ -1,1 +1,0 @@
-$.urlParam=function(a){var b=new RegExp("[?&]"+a+"=([^&#]*)").exec(window.location.href);if(b==null){return null}else{return b[1]||0}};
