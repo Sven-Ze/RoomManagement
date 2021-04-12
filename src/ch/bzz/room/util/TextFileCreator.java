@@ -16,7 +16,7 @@ import java.io.IOException;
  * @since 12.04.21
  */
 public class TextFileCreator {
-    public void write(Reservation reservation) {
+    public static void write(Reservation reservation) {
         try {
             File myObj = new File("filename.txt");
             if (myObj.createNewFile()) {
