@@ -22,14 +22,16 @@ public class Reservation {
     private LocalDate bis;
     private String zusatzStruktur;
     private boolean reinigtMieter;
+    private String status;
 
-    public Reservation(Mieter mieter, Room room, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter) {
+    public Reservation(Mieter mieter, Room room, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter, String status) {
         this.mieter = mieter;
         this.room = room;
         this.von = von;
         this.bis = bis;
         this.zusatzStruktur = zusatzStruktur;
         this.reinigtMieter = reinigtMieter;
+        this.status = status;
     }
 
     public Reservation() {
@@ -168,5 +170,24 @@ public class Reservation {
 
     public void setReinigtMieter(boolean reinigtMieter) {
         this.reinigtMieter = reinigtMieter;
+    }
+
+    /**
+     * Gets the status
+     *
+     * @return value of status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the status
+     *
+     * @param status the value to set
+     */
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
