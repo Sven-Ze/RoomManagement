@@ -48,7 +48,7 @@ function showReservation(reservation) {
     $("#von").val(reservation.von);
     $("#bis").val(reservation.bis);
     $("#zusatzStruktur").val(reservation.zusatzStruktur);
-    $("#reinigtMieter").val( true);
+    $("#reinigtMieter").val(reservation.reinigtMieter? 1: 0);
 
     if (Cookies.get("userRole") != "verwaltung") {
         $("#mieter, #room, #von, #bis, #zusatzStruktur,#reinigtMieter").prop("readonly", true);
