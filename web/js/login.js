@@ -1,7 +1,7 @@
 /**
  * view-controller for login.html
  *
- * M426: RoomManagement
+ * M426 - RoomManagement
  *
  * @author  Sven Zeindler
  */

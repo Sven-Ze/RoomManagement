@@ -188,7 +188,7 @@ public class Reservation implements Comparable<Reservation> {
      */
     public void setStatus(String status) {
         this.status = status;
-      
+    }
     @Override
     public int compareTo(Reservation reservation) {
         if (getVon() == null || reservation.getVon() == null)

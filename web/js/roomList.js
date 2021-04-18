@@ -1,9 +1,9 @@
 /**
- * Kurzbeschreibung
+ * view-controller for roomList.html
  *
- * @author  TODO
- * @since   2019-mm-dd
- * @version 1.0
+ * M426 - Room Management
+ *
+ * @author  Sven Zeindler
  */
 
 

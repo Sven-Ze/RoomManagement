@@ -7,6 +7,7 @@ import ch.bzz.room.model.Reservation;
 import ch.bzz.room.model.Room;
 
 import javax.ejb.Local;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,10 +16,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -95,6 +93,28 @@ public class ReservationService {
                 .build();
         return response;
     }
+
+    @Path("delete")
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteReservation(
+            @QueryParam("reservationId") Integer id,
+            @CookieParam("userRole") String userRole){
+        int httpStatus;
+        if (userRole != null && userRole.equals("verwaltung")) {
+            new ReservationDAO().delete(id);
+            httpStatus = 200;
+
+        } else {
+            httpStatus = 403;
+        }
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
 
     public static long getDaysBetween(LocalDate startDate) {
         LocalDateTime now = LocalDate.now().atStartOfDay();

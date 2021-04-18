@@ -1,14 +1,20 @@
 /**
- * Kurzbeschreibung
+ * view-controller for reservationEdit.html
  *
- * @author  TODO
- * @since   2019-mm-dd
- * @version 1.0
+ * M426 - Room Management
+ *
+ * @author  Sven Zeindler
  */
 $(document).ready(function () {
     loadReservation();
     loadRoom();
     loadMieter();
+
+    /**
+     * listener for submitting the form
+     */
+    $("#reservationEditForm").submit(saveReservation);
+
     /**
      * listener for button [abbrechen], redirects to roomlist
      */
@@ -38,6 +44,41 @@ function loadReservation() {
                 }
             })
     }
+}
+
+/**
+ * sends the reservation data to the webservice
+ * @param form the form being submitted
+ */
+function saveReservation(form) {
+    form.preventDefault();
+    var bookUUID = $("#reservationId").val();
+    var url = "./resource/reservation/";
+    var type = "";
+    if (bookUUID) {
+        url += "update";
+        type = "PUT";
+    } else {
+        url += "create";
+        type = "POST";
+    }
+    $
+        .ajax({
+            url: url,
+            dataType: "text",
+            type: type,
+            data: $("#reservationEditForm").serialize(),
+        })
+        .done(function (jsonData) {
+            window.location.href = "./reservationList.html";
+        })
+        .fail(function (xhr, status, errorThrown) {
+            if (xhr.status == 404) {
+                $("#message").text("Diese Reservation existiert nicht");
+            } else {
+                $("#message").text("Fehler beim Speichern der Reservation");
+            }
+        })
 }
 
 function showReservation(reservation) {
