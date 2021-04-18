@@ -83,11 +83,8 @@ public class ReservationService {
         List<Reservation> filteredList = new ArrayList<>();
 
         for(Reservation r : reservationList) {
-            long daysBetween = getDaysBetween(r.getVon());
-            if(daysBetween <= ONEWEEK && r.getVon().isAfter(LocalDate.now())) {
                 if(r.getStatus().equalsIgnoreCase("pending")) {
                     filteredList.add(r);
-                }
             }
         }
 
@@ -134,66 +131,17 @@ public class ReservationService {
         return response;
     }
 
-    @Path("delete")
-    @DELETE
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response deleteReservation(
-            @QueryParam("reservationId") Integer id,
-            @CookieParam("userRole") String userRole){
-        int httpStatus;
-        if (userRole != null && userRole.equals("verwaltung")) {
-            new ReservationDAO().delete(id);
-            httpStatus = 200;
-
-        } else {
-            httpStatus = 403;
-        }
-        Response response = Response
-                .status(httpStatus)
-                .entity("")
-                .build();
-        return response;
-    }
-
-    @Path("update")
-    @PUT
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response updateReservation(
-            Reservation reservation,
-            @CookieParam("userRole") String userRole){
-        int httpStatus;
-        DAO<Reservation, String> projectDao = new ReservationDAO();
-        List<Reservation> reservationList = projectDao.getAll();
-
-        if (userRole != null && userRole.equals("verwaltung")) {
-            for(Reservation r : reservationList) {
-                if (r.getReservationId() == reservation.getReservationId()) {
-                    projectDao.save(reservation);
-                }
-            }
-            httpStatus = 200;
-
-        } else {
-            httpStatus = 403;
-        }
-        Response response = Response
-                .status(httpStatus)
-                .entity("")
-                .build();
-        return response;
-    }
-
-    @Path("save")
+    @Path("create")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response saveReservation(
+    public Response createReservation(
             @BeanParam Reservation reservation,
             @FormParam("von") String von,
             @FormParam("bis") String bis,
             @FormParam("room") String roomId,
             @FormParam("mieter") String mieterId,
             @CookieParam("userRole") String userRole){
-        int httpStatus;
+        int httpStatus = 200;
         if (userRole != null && userRole.equals("verwaltung")) {
             httpStatus = 200;
             MieterDAO mieterDAO = new MieterDAO();
@@ -204,7 +152,7 @@ public class ReservationService {
                     reservation.setBis(LocalDate.parse(bis));
                     reservation.setMieter(mieterDAO.getEntity(mieterId));
                     reservation.setRoom(roomDAO.getEntity(roomId));
-                    new ReservationDAO().save(reservation);
+                    new ReservationDAO().add(reservation);
 
                 } else {
                     httpStatus = 400;
@@ -212,8 +160,49 @@ public class ReservationService {
             } else {
                 httpStatus = 400;
             }
-        } else {
-            httpStatus = 403;
+        }
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
+    @Path("update")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateReservation(
+            @FormParam("reservationId") Integer id,
+            @BeanParam Reservation reservation,
+            @FormParam("von") String von,
+            @FormParam("bis") String bis,
+            @FormParam("room") String roomId,
+            @FormParam("mieter") String mieterId,
+            @CookieParam("userRole") String userRole){
+        int httpStatus = 200;
+        if (userRole != null && userRole.equals("verwaltung")) {
+            httpStatus = 200;
+            MieterDAO mieterDAO = new MieterDAO();
+            RoomDAO roomDAO = new RoomDAO();
+            if (new ReservationDAO().getEntity(id.toString()) != null) {
+                if (mieterDAO.getEntity(mieterId) != null) {
+                    if (roomDAO.getEntity(roomId) != null) {
+                        reservation.setReservationId(id);
+                        reservation.setVon(LocalDate.parse(von));
+                        reservation.setBis(LocalDate.parse(bis));
+                        reservation.setMieter(mieterDAO.getEntity(mieterId));
+                        reservation.setRoom(roomDAO.getEntity(roomId));
+                        new ReservationDAO().save(reservation);
+
+                    } else {
+                        httpStatus = 400;
+                    }
+                } else {
+                    httpStatus = 400;
+                }
+            } else {
+                httpStatus = 400;
+            }
         }
         Response response = Response
                 .status(httpStatus)
@@ -244,6 +233,28 @@ public class ReservationService {
                 .build();
         return response;
     }
+
+    @Path("delete")
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteReservation(
+            @QueryParam("reservationId") Integer id,
+            @CookieParam("userRole") String userRole){
+        int httpStatus;
+        if (userRole != null && userRole.equals("verwaltung")) {
+            new ReservationDAO().delete(id);
+            httpStatus = 200;
+
+        } else {
+            httpStatus = 403;
+        }
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
 
 
     public static long getDaysBetween(LocalDate startDate) {

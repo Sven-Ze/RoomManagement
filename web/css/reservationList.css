@@ -2,15 +2,18 @@ h3 {
     padding: 10px;
 
 }
+
+h4 {
+    padding: 10px;
+
+}
 table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 99%;
     margin: 10px;
 }
-#reservationForm {
-    padding: 10px;
-}
+
 
 table td, table th {
     border: 1px solid #ddd;

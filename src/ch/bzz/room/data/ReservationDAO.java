@@ -95,27 +95,59 @@ public class ReservationDAO implements DAO<Reservation, String>{
      */
     @Override
     public Result save(Reservation reservation) {
-        String sqlQuery = "REPLACE Reservation" +
-                " SET reservationId=?," +
-                " von=?," +
-                " bis=?," +
-                " zusatzinfrastruktur=?," +
-                " vomMieterReinigung=?," +
-                " Mieter_mieterId=?"+
-                " Room_roomId=? "+
-                " status=? ";
-
+        String sqlQuery = "UPDATE `RoomDB`.`Reservation`\n" +
+                "SET\n" +
+                "`reservationId` = ?,\n" +
+                "`von` = ?,\n" +
+                "`bis` = ?,\n" +
+                "`zusatzinfrastruktur` = ?,\n" +
+                "`vomMieterReinigung` = ?,\n" +
+                "`Mieter_mieterId` = ?,\n" +
+                "`Room_roomId` = ?,\n" +
+                "`status` = ?\n" +
+                "WHERE `reservationId` = ? ;\n";
         HashMap<Integer, String> map = new HashMap<>();
-
+        String isReinigMieter = reservation.isReinigtMieter()? "1" : "0";
         map.put(1, String.valueOf(reservation.getReservationId()));
         map.put(2, reservation.getVon().toString());
         map.put(3, reservation.getBis().toString());
         map.put(4, reservation.getZusatzStruktur());
-        map.put(5, String.valueOf(reservation.isReinigtMieter()));
+        map.put(5, isReinigMieter);
         map.put(6, String.valueOf(reservation.getMieter().getMieterId()));
         map.put(7, String.valueOf(reservation.getRoom().getRoomId()));
         map.put(8, reservation.getStatus());
+        map.put(9, String.valueOf(reservation.getReservationId()));
+        return MySqlDB.sqlSave(sqlQuery, map);
+    }
 
+    public Result add(Reservation reservation) {
+        String sqlQuery = "INSERT INTO `RoomDB`.`Reservation`\n" +
+                "(`von`,\n" +
+                "`bis`,\n" +
+                "`zusatzinfrastruktur`,\n" +
+                "`vomMieterReinigung`,\n" +
+                "`Mieter_mieterId`,\n" +
+                "`Room_roomId`,\n" +
+                "`status`)\n" +
+                "VALUES\n" +
+                "(?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?);";
+        HashMap<Integer, String> map = new HashMap<>();
+
+        String isReinigMieter = reservation.isReinigtMieter()? "1" : "0";
+
+        map.put(1, reservation.getVon().toString());
+        map.put(2, reservation.getBis().toString());
+        map.put(3, reservation.getZusatzStruktur());
+        map.put(4, isReinigMieter);
+        map.put(5, String.valueOf(reservation.getMieter().getMieterId()));
+        map.put(6, String.valueOf(reservation.getRoom().getRoomId()));
+        map.put(7, reservation.getStatus());
         return MySqlDB.sqlSave(sqlQuery, map);
     }
 
