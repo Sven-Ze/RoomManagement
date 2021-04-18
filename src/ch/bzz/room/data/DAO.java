@@ -32,6 +32,15 @@ public interface DAO<T, K> {
     }
 
     /**
+     * adds an object to the database entity
+     * @param t model-object
+     * @return Result-code
+     */
+    default Result add (T t) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * saves an object to the database entity
      * @param t model-object
      * @return Result-code

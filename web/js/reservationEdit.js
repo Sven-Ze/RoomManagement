@@ -59,7 +59,7 @@ function saveReservation(form) {
         url += "update";
         type = "PUT";
     } else {
-        url += "save";
+        url += "create";
         type = "POST";
     }
     $

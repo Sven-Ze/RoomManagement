@@ -28,7 +28,7 @@
         </button>
         <div class="dropdown-content">
             <a href="#">Reservationsliste ansehen</a>
-            <a href="reservationEdit.html">Reservation Bearbeiten</a>
+            <a href="reservationEdit.html">Reservation erfassen</a>
         </div>
     </div>
     <button type='button' id='logoff'>Anmelden</button>
@@ -58,6 +58,7 @@
 
 
 <h4>Offene Reservationen</h4>
+<form id="reservationForm">
 <table id="reservationPendingList">
     <thead>
     <tr>
@@ -69,12 +70,13 @@
         <th>Ansehen</th>
         <th>Bearbeiten</th>
         <th>Löschen</th>
-        <th>Datei</th>
+        <th>Mietvertrag</th>
     </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+</form>
 
 <script src='./js/jquery-3.4.1.min.js'></script>
 <script src='./js/reservationList.js'></script>

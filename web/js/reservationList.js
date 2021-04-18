@@ -9,6 +9,18 @@ $(document).ready(function () {
     loadAcceptedReservations();
     loadPendingReservations();
 
+    $("#reservationForm").on("click", "#delete", function () {
+        if (confirm("Wollen Sie diese Reservation wirklich löschen?" + this.value)) {
+            deleteReservation(this.value);
+        }
+    });
+
+    $("#reservationForm").on("click", "#file", function () {
+        if (confirm("Wollen Sie dieses File wirklich erstellen?" + this.value)) {
+            getFile(this.value);
+        }
+    });
+
 });
 
 function loadAcceptedReservations() {
@@ -28,14 +40,33 @@ function loadAcceptedReservations() {
         })
 }
 
+/**
+ * send delete request for a reservation
+ * @param reservationId
+ */
+function deleteReservation(reservationId) {
+    $
+        .ajax({
+            url: "./resource/reservation/delete?reservationId=" + reservationId,
+            dataType: "text",
+            type: "DELETE",
+        })
+        .done(function (data) {
+            loadProjekt();
+            $("#message").text("Reservation gelöscht");
 
-function getFile() {
-    var reservationId = $.urlParam('reservationId');
-    if (reservationId !== null && reservationId != -1) {
+        })
+        .fail(function (xhr, status, errorThrown) {
+            $("#message").text("Fehler beim Löschen der Reservation");
+        })
+}
+
+
+function getFile(reservationId) {
         $
             .ajax({
-                url: "./resource/reservation/read?reservationId=" + reservationId,
-                dataType: "json",
+                url: "./resource/reservation/getFile?reservationId=" + reservationId,
+                dataType: "text",
                 type: "GET"
             })
             .done(showReservation)
@@ -48,7 +79,7 @@ function getFile() {
                     window.location.href = "./reservationList.html";
                 }
             })
-    }
+
 }
 
 
@@ -100,9 +131,9 @@ function showPendingReservation(reservationData) {
         tableData += "<td>" + reservation.mieter.telefon + "</td>";
         if (Cookies.get("userRole") == "verwaltung") {
             tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
-            tableData += "<td><a>Bearbeiten</a></td>";
-            tableData += "<td><button type='button'>Löschen</button></td>";
-            tableData += "<td><button type='button'>Datei</button></td>";
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Bearbeiten</a></td>";
+            tableData += "<td><button type='button' id='delete' value='" + reservation.reservationId + "'>Löschen</button></td>";
+            tableData += "<td><button type='button' id='file' value='" + reservation.reservationId + "'>Datei</button></td>";
         }
         else if(Cookies.get("userRole") == "hauswart"){
             tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
