@@ -2,7 +2,7 @@ h3 {
     padding: 10px;
 
 }
-#reservationList {
+table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 99%;
@@ -12,18 +12,18 @@ h3 {
     padding: 10px;
 }
 
-#reservationList td, #reservationList th {
+table td, table th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align:center;
 }
 
 
-#reservationList tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even){background-color: #f2f2f2;}
 
-#reservationList tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #ddd;}
 
-#reservationList th {
+table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

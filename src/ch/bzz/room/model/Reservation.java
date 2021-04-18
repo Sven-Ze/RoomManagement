@@ -2,6 +2,7 @@ package ch.bzz.room.model;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
 
+import javax.ws.rs.FormParam;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,13 +16,19 @@ import java.util.List;
  * @since 01.03.21
  */
 public class Reservation implements Comparable<Reservation> {
+    @FormParam("reservationId")
     private int reservationId;
     private Mieter mieter;
     private Room room;
+    @FormParam("von")
     private LocalDate von;
+    @FormParam("bis")
     private LocalDate bis;
+    @FormParam("zusatzStruktur")
     private String zusatzStruktur;
+    @FormParam("reinigtMieter")
     private boolean reinigtMieter;
+    @FormParam("status")
     private String status;
 
     public Reservation(Mieter mieter, Room room, LocalDate von, LocalDate bis, String zusatzStruktur, boolean reinigtMieter, String status) {
