@@ -32,7 +32,7 @@ public class UserService {
     ){
         int httpStatus;
         User user = new UserDAO().getEntity(username, password);
-        if (user.getUsername().equals("guest")) {
+        if (user.getUserRole().equals("guest")) {
             httpStatus = 404;
         } else {
             httpStatus = 200;
