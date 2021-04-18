@@ -1,6 +1,7 @@
 package ch.bzz.room.service;
 
 import ch.bzz.room.data.DAO;
+import ch.bzz.room.data.MieterDAO;
 import ch.bzz.room.data.ReservationDAO;
 import ch.bzz.room.data.RoomDAO;
 import ch.bzz.room.model.Reservation;
@@ -184,15 +185,33 @@ public class ReservationService {
 
     @Path("save")
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response saveReservation(
-            Reservation reservation,
+            @BeanParam Reservation reservation,
+            @FormParam("von") String von,
+            @FormParam("bis") String bis,
+            @FormParam("room") String roomId,
+            @FormParam("mieter") String mieterId,
             @CookieParam("userRole") String userRole){
         int httpStatus;
         if (userRole != null && userRole.equals("verwaltung")) {
-            new ReservationDAO().save(reservation);
             httpStatus = 200;
+            MieterDAO mieterDAO = new MieterDAO();
+            RoomDAO roomDAO = new RoomDAO();
+            if (mieterDAO.getEntity(mieterId) != null) {
+                if (roomDAO.getEntity(roomId) != null) {
+                    reservation.setVon(LocalDate.parse(von));
+                    reservation.setBis(LocalDate.parse(bis));
+                    reservation.setMieter(mieterDAO.getEntity(mieterId));
+                    reservation.setRoom(roomDAO.getEntity(roomId));
+                    new ReservationDAO().save(reservation);
 
+                } else {
+                    httpStatus = 400;
+                }
+            } else {
+                httpStatus = 400;
+            }
         } else {
             httpStatus = 403;
         }

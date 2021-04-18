@@ -52,20 +52,20 @@ function loadReservation() {
  */
 function saveReservation(form) {
     form.preventDefault();
-    var bookUUID = $("#reservationId").val();
+    var reservationId = $("#reservationId").val();
     var url = "./resource/reservation/";
     var type = "";
-    if (bookUUID) {
+    if (reservationId) {
         url += "update";
         type = "PUT";
     } else {
-        url += "create";
+        url += "save";
         type = "POST";
     }
     $
         .ajax({
             url: url,
-            dataType: "text",
+            dataType: "json",
             type: type,
             data: $("#reservationEditForm").serialize(),
         })

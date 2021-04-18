@@ -40,7 +40,25 @@
     <span id="nachricht" style="color: red;"></span>
 </div>
 
-<table id="reservationList">
+<h4>Bestätigte Reservationen</h4>
+<table id="reservationAcceptedList">
+    <thead>
+    <tr>
+        <th>Raumname</th>
+        <th>Reserviert von - bis</th>
+        <th>Reinigung</th>
+        <th>Kontakt Angaben</th>
+        <th>Kontakt Tel</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+
+<h4>Offene Reservationen</h4>
+<table id="reservationPendingList">
     <thead>
     <tr>
         <th>Raumname</th>
@@ -51,12 +69,13 @@
         <th>Ansehen</th>
         <th>Bearbeiten</th>
         <th>Löschen</th>
+        <th>Datei</th>
     </tr>
     </thead>
     <tbody>
-
     </tbody>
 </table>
+
 <script src='./js/jquery-3.4.1.min.js'></script>
 <script src='./js/reservationList.js'></script>
 <script src="./js/js.cookie.js"></script>
