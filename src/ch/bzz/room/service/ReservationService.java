@@ -39,7 +39,7 @@ public class ReservationService {
     private final int ONEWEEK = 7;
 
     @GET
-    @Path("listAccepted")
+    @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAcceptedReservations() {
         int httpStatus = 200;
@@ -51,9 +51,7 @@ public class ReservationService {
         for(Reservation r : reservationList) {
             long daysBetween = getDaysBetween(r.getVon());
             if(daysBetween <= ONEWEEK && r.getVon().isAfter(LocalDate.now())) {
-                if(r.getStatus().equalsIgnoreCase("accepted")) {
                     filteredList.add(r);
-                }
             }
         }
 
@@ -83,7 +81,7 @@ public class ReservationService {
         List<Reservation> filteredList = new ArrayList<>();
 
         for(Reservation r : reservationList) {
-                if(r.getStatus().equalsIgnoreCase("pending")) {
+                if(r.getStatus().equalsIgnoreCase("offen")) {
                     filteredList.add(r);
             }
         }

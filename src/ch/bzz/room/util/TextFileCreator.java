@@ -21,10 +21,10 @@ import java.time.LocalDate;
 public class TextFileCreator {
     public static void write(Reservation reservation) {
         try {
-            File myObj = new File("reservation"+reservation.getReservationId()+".txt");
+            File myObj = new File("/home/bzz/data/Mietvertraege/reservation"+reservation.getReservationId()+".txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
-                FileWriter myWriter = new FileWriter("reservation"+reservation.getReservationId()+".txt");
+                FileWriter myWriter = new FileWriter("/home/bzz/data/Mietvertraege/reservation"+reservation.getReservationId()+".txt");
                 myWriter.write("Reservation: "+reservation.getReservationId()+"\n");
                 myWriter.write("Von: "+reservation.getVon()+"\n");
                 myWriter.write("Bis: "+reservation.getBis()+"\n");

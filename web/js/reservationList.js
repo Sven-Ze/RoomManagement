@@ -9,14 +9,20 @@ $(document).ready(function () {
     loadAcceptedReservations();
     loadPendingReservations();
 
+    $("#allReservationForm").on("click", "#delete", function () {
+        if (confirm("Wollen Sie diese Reservation wirklich löschen?")) {
+            deleteReservation(this.value);
+        }
+    });
+
     $("#reservationForm").on("click", "#delete", function () {
-        if (confirm("Wollen Sie diese Reservation wirklich löschen?" + this.value)) {
+        if (confirm("Wollen Sie diese Reservation wirklich löschen?")) {
             deleteReservation(this.value);
         }
     });
 
     $("#reservationForm").on("click", "#file", function () {
-        if (confirm("Wollen Sie dieses File wirklich erstellen?" + this.value)) {
+        if (confirm("Wollen Sie dieses File wirklich erstellen?")) {
             getFile(this.value);
         }
     });
@@ -26,7 +32,7 @@ $(document).ready(function () {
 function loadAcceptedReservations() {
     $
         .ajax({
-            url: "./resource/reservation/listAccepted",
+            url: "./resource/reservation/list",
             dataType: "json",
             type: "GET"
         })
@@ -94,7 +100,24 @@ function showAcceptedReservation(reservationData) {
         tableData += "<td>" + reservation.von + " - " +reservation.bis + "</td>";
         tableData += "<td>" + reinigung + "</td>";
         tableData += "<td>" + reservation.mieter.mieterVorname + " " + reservation.mieter.mieterNachname + "</td>";
-        tableData += "<td>" + reservation.mieter.telefon + "</td>";
+        tableData += "<td>" + reservation.mieter.telefon + "</td>"
+        tableData += "<td>" + reservation.status + "</td>";
+        if (Cookies.get("userRole") == "verwaltung") {
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Bearbeiten</a></td>";
+            tableData += "<td><button type='button' id='delete' value='" + reservation.reservationId + "'>Löschen</button></td>";
+        }
+        else if(Cookies.get("userRole") == "hauswart"){
+            tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+        }
+        else {
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+            tableData += "<td>X</td>";
+
+        }
         tableData += "</tr>";
     });
     $("#reservationAcceptedList > tbody").html(tableData);
@@ -129,6 +152,7 @@ function showPendingReservation(reservationData) {
         tableData += "<td>" + reinigung + "</td>";
         tableData += "<td>" + reservation.mieter.mieterVorname + " " + reservation.mieter.mieterNachname + "</td>";
         tableData += "<td>" + reservation.mieter.telefon + "</td>";
+        tableData += "<td>" + reservation.status + "</td>";
         if (Cookies.get("userRole") == "verwaltung") {
             tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Ansehen</a></td>";
             tableData += "<td><a href='./reservationEdit.html?reservationId=" + reservation.reservationId + "'>Bearbeiten</a></td>";

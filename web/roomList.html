@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="css/roomList.css"/>
     <link rel="stylesheet" href="css/loginStyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#roomListBody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -40,6 +52,8 @@
     <span id="nachricht" style="color: red;"></span>
 </div>
 
+<input id="myInput" type="text" placeholder="Suchen..">
+
 <table id="roomList">
     <thead>
     <tr>
@@ -48,6 +62,9 @@
         <th>Besonderheiten</th>
         <th>Kosten pro Tag</th>
     </tr>
+    </thead>
+
+    <tbody id="roomListBody">
     <tr>
         <td>Turnhalle</td>
         <td>500</td>
@@ -66,9 +83,12 @@
         <td>Projektor, Verstärker, Whiteboard, Lavabo</td>
         <td>75</td>
     </tr>
-    </thead>
-    <tbody>
-
+    <tr>
+        <td>Bastelraum</td>
+        <td>100</td>
+        <td>Lavabo, Toiletten</td>
+        <td>350</td>
+    </tr>
     </tbody>
 </table>
 <script src='./js/roomList.js'></script>

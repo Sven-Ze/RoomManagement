@@ -11,6 +11,27 @@
     <link rel="stylesheet" href="css/reservationList.css"/>
     <link rel="stylesheet" href="css/loginStyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#reservationAcceptedListBody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+
+        $(document).ready(function(){
+            $("#myInput2").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#reservationPendingListBody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -40,7 +61,10 @@
     <span id="nachricht" style="color: red;"></span>
 </div>
 
-<h4>Bestätigte Reservationen</h4>
+<h4>Reservationen</h4>
+
+<input id="myInput" type="text" placeholder="Suchen..">
+<form id="allReservationForm">
 <table id="reservationAcceptedList">
     <thead>
     <tr>
@@ -49,15 +73,21 @@
         <th>Reinigung</th>
         <th>Kontakt Angaben</th>
         <th>Kontakt Tel</th>
+        <th>Status</th>
+        <th>Ansehen</th>
+        <th>Bearbeiten</th>
+        <th>Löschen</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="reservationAcceptedListBody">
 
     </tbody>
 </table>
-
+</form>
 
 <h4>Offene Reservationen</h4>
+<input id="myInput2" type="text" placeholder="Suchen..">
+
 <form id="reservationForm">
 <table id="reservationPendingList">
     <thead>
@@ -67,13 +97,14 @@
         <th>Reinigung</th>
         <th>Kontakt Angaben</th>
         <th>Kontakt Tel</th>
+        <th>Status</th>
         <th>Ansehen</th>
         <th>Bearbeiten</th>
         <th>Löschen</th>
         <th>Mietvertrag</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="reservationPendingListBody">
     </tbody>
 </table>
 </form>

@@ -36,9 +36,7 @@
 </div>
 
 <h3>Reservationen Bearbeiten</h3>
-<div>
-    <span id="nachricht" style="color: red;"></span>
-</div>
+
 
 <form id='reservationEditForm' name='reservationEdit'>
     <div id='message' style='color: red;'></div>
@@ -84,8 +82,9 @@
             <td>Status </td>
             <td>
                 <select id='status' name='status' required>
-                    <option value="pending">Offen </option>
-                    <option value="accepted">Bestätigt </option>
+                    <option value="offen">Offen </option>
+                    <option value="bestätigt">Bestätigt </option>
+                    <option value="abgelehnt">Abgelehnt </option>
                 </select>
             </td>
         </tr>

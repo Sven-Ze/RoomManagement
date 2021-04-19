@@ -74,9 +74,7 @@ function saveReservation(form) {
         })
         .fail(function (xhr, status, errorThrown) {
             if (xhr.status == 404) {
-                $("#message").text("Diese Reservation existiert nicht");
             } else {
-                $("#message").text("Fehler beim Speichern der Reservation");
             }
         })
 }
